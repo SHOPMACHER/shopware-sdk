@@ -9,6 +9,16 @@ namespace LeadCommerce\Shopware\SDK\Converter;
 class ArticleConverter extends BaseConverter
 {
     /**
+     * @inheritDoc
+     */
+    public function __construct()
+    {
+        $this->setSubConverter([
+            'maindetail' => 'LeadCommerce\\Shopware\\SDK\\Converter\\ArticleDetailConverter'
+        ]);
+    }
+
+    /**
      * @return string
      */
     public function getEntityClass(): string

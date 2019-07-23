@@ -13,9 +13,9 @@ class ArticleQuery extends Base
     /**
      * @return mixed
      */
-    protected function getClass()
+    protected function getConverterClass()
     {
-        return 'LeadCommerce\\Shopware\\SDK\\Entity\\Article';
+        return 'LeadCommerce\\Shopware\\SDK\\Converter\\ArticleConverter';
     }
 
     /**

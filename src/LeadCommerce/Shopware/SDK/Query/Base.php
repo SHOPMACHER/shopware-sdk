@@ -88,8 +88,8 @@ abstract class Base
      *
      * @param $uri
      * @param string $method
-     * @param null   $body
-     * @param array  $headers
+     * @param null $body
+     * @param array $headers
      *
      * @return array|mixed
      */
@@ -111,6 +111,11 @@ abstract class Base
     {
         $content = $response->getBody()->getContents();
         $content = json_decode($content);
+
+        if (is_null($content)) {
+            throw new \RuntimeException('Failed converting response body into json');
+        }
+
         $content = $content->data;
 
         if (is_array($content)) {
@@ -131,15 +136,11 @@ abstract class Base
      */
     protected function createEntity($content)
     {
-        $class = $this->getClass();
-        $entity = new $class();
+        $class = $this->getConverterClass();
+        $converter = new $class();
+        $content = json_decode(json_encode($content), true);
 
-        if ($entity instanceof \LeadCommerce\Shopware\SDK\Entity\Base) {
-            $content = json_decode(json_encode($content), true);
-            $entity->setEntityAttributes($content);
-        }
-
-        return $entity;
+        return $converter->convert($content);
     }
 
     /**
@@ -147,7 +148,7 @@ abstract class Base
      *
      * @return string
      */
-    abstract protected function getClass();
+    abstract protected function getConverterClass();
 
     /**
      * Finds an entity by its id.
@@ -168,9 +169,9 @@ abstract class Base
      *
      * @param \LeadCommerce\Shopware\SDK\Entity\Base $entity
      *
+     * @return \LeadCommerce\Shopware\SDK\Entity\Base
      * @throws MethodNotAllowedException
      *
-     * @return \LeadCommerce\Shopware\SDK\Entity\Base
      */
     public function create(\LeadCommerce\Shopware\SDK\Entity\Base $entity)
     {
@@ -184,9 +185,9 @@ abstract class Base
      *
      * @param \LeadCommerce\Shopware\SDK\Entity\Base $entity
      *
+     * @return array|mixed
      * @throws MethodNotAllowedException
      *
-     * @return array|mixed
      */
     public function update(\LeadCommerce\Shopware\SDK\Entity\Base $entity)
     {
@@ -218,9 +219,9 @@ abstract class Base
      *
      * @param $id
      *
+     * @return array|mixed
      * @throws MethodNotAllowedException
      *
-     * @return array|mixed
      */
     public function delete($id)
     {
@@ -234,9 +235,9 @@ abstract class Base
      *
      * @param array $ids
      *
+     * @return array|mixed
      * @throws MethodNotAllowedException
      *
-     * @return array|mixed
      */
     public function deleteBatch(array $ids)
     {
@@ -248,8 +249,8 @@ abstract class Base
     /**
      * @param $uri
      * @param string $method
-     * @param null   $body
-     * @param array  $headers
+     * @param null $body
+     * @param array $headers
      *
      * @return mixed|ResponseInterface
      */
@@ -263,8 +264,8 @@ abstract class Base
      *
      * @param $uri
      * @param string $method
-     * @param null   $body
-     * @param array  $headers
+     * @param null $body
+     * @param array $headers
      *
      * @return false|\stdClass
      */

@@ -10,15 +10,19 @@
         {
             "name": "Jochen Niebuhr",
             "email": "jochen.niebuhr@nk360.de"
+        },
+        {
+            "name": "Viktor Breitenbuecher",
+            "email": "v.breitenbuecher@shopmacher.de"
         }
     ],
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "1.x-dev"
         }
     },
     "require": {
-        "php" : ">=5.5",
+        "php" : "^7.0",
         "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {

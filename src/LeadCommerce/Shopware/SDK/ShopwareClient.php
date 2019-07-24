@@ -3,6 +3,7 @@
 namespace LeadCommerce\Shopware\SDK;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use LeadCommerce\Shopware\SDK\Query\AddressQuery;
@@ -21,6 +22,8 @@ use LeadCommerce\Shopware\SDK\Query\ShopsQuery;
 use LeadCommerce\Shopware\SDK\Query\TranslationsQuery;
 use LeadCommerce\Shopware\SDK\Query\VariantsQuery;
 use LeadCommerce\Shopware\SDK\Query\VersionQuery;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class ShopwareClient
@@ -50,19 +53,14 @@ class ShopwareClient
     const VERSION = '0.0.1';
 
     /**
-     * @var string|null
+     * @var Config
      */
-    protected $baseUrl;
+    private $config;
 
     /**
-     * @var string|null
+     * @var LoggerInterface
      */
-    protected $username;
-
-    /**
-     * @var string|null
-     */
-    protected $apiKey;
+    private $logger;
 
     /**
      * @var Client
@@ -72,21 +70,19 @@ class ShopwareClient
     /**
      * ShopwareClient constructor.
      *
-     * @param $baseUrl
-     * @param null $username
-     * @param null $apiKey
+     * @param Config $config
+     * @param LoggerInterface $logger
      */
-    public function __construct($baseUrl, $username = null, $apiKey = null, array $guzzleOptions = [])
+    public function __construct(Config $config, LoggerInterface $logger)
     {
-        $this->baseUrl = $baseUrl;
-        $this->username = $username;
-        $this->apiKey = $apiKey;
+        $this->config = $config;
+        $this->logger = $logger;
         $curlHandler = new CurlHandler();
         $handlerStack = HandlerStack::create($curlHandler);
 
-        $guzzleOptions = array_merge($guzzleOptions, [
-            'base_uri' => $this->baseUrl,
-            'handler'  => $handlerStack,
+        $guzzleOptions = array_merge($config->getGuzzleOptions(), [
+            'base_uri' => $config->getBaseUrl(),
+            'handler' => $handlerStack,
         ]);
         $this->client = new Client($guzzleOptions);
     }
@@ -94,21 +90,22 @@ class ShopwareClient
     /**
      * Does a request.
      *
-     * @param $uri
+     * @param string $uri
      * @param string $method
-     * @param null   $body
-     * @param array  $headers
+     * @param mixed $body
+     * @param array $headers
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @return ResponseInterface
+     * @throws GuzzleException
      */
-    public function request($uri, $method = 'GET', $body = null, $headers = [])
+    public function request(string $uri, string $method = 'GET', $body = null, $headers = [])
     {
         return $this->client->request($method, $uri, [
-            'json'        => $body,
-            'headers'     => $headers,
-            'auth'        => [
-                $this->username,
-                $this->apiKey,
+            'json' => $body,
+            'headers' => $headers,
+            'auth' => [
+                $this->getConfig()->getUsername(),
+                $this->getConfig()->getApiKey(),
                 'digest',
             ],
         ]);
@@ -155,5 +152,21 @@ class ShopwareClient
         $this->client = $client;
 
         return $this;
+    }
+
+    /**
+     * @return Config
+     */
+    public function getConfig(): Config
+    {
+        return $this->config;
+    }
+
+    /**
+     * @return LoggerInterface
+     */
+    public function getLogger(): LoggerInterface
+    {
+        return $this->logger;
     }
 }

@@ -6,6 +6,7 @@ use LeadCommerce\Shopware\SDK\Exception\MethodNotAllowedException;
 use LeadCommerce\Shopware\SDK\ShopwareClient;
 use LeadCommerce\Shopware\SDK\Util\Constants;
 use Psr\Http\Message\ResponseInterface;
+use RuntimeException;
 
 /**
  * Class Base
@@ -114,7 +115,11 @@ abstract class Base
 
         if (is_null($content)) {
             $this->client->getLogger()->debug($body);
-            throw new \RuntimeException('Failed converting response body into json');
+            throw new RuntimeException('Failed converting response body into json');
+        }
+
+        if (!isset($content->data)) {
+            return $content->success;
         }
 
         $content = $content->data;

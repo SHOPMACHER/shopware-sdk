@@ -2,6 +2,8 @@
 
 namespace LeadCommerce\Shopware\SDK\Query;
 
+use LeadCommerce\Shopware\SDK\Util\Constants;
+
 /**
  * Class ArticleQuery
  *
@@ -10,6 +12,16 @@ namespace LeadCommerce\Shopware\SDK\Query;
  */
 class ArticleQuery extends Base
 {
+    /**
+     * Find one article based on given article number
+     * @param string $number
+     * @return \LeadCommerce\Shopware\SDK\Entity\Base
+     */
+    public function findOneByNumber(string $number)
+    {
+        return $this->fetch($this->queryPath . '/' . $number . '?useNumberAsId=true');
+    }
+
     /**
      * @return mixed
      */

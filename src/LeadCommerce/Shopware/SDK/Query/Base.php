@@ -6,6 +6,7 @@ use LeadCommerce\Shopware\SDK\Exception\MethodNotAllowedException;
 use LeadCommerce\Shopware\SDK\ShopwareClient;
 use LeadCommerce\Shopware\SDK\Util\Constants;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class Base
@@ -19,6 +20,11 @@ abstract class Base
      * @var ShopwareClient
      */
     protected $client;
+
+    /**
+     * @var LoggerInterface
+     */
+    protected $logger;
 
     /**
      * @var string
@@ -41,11 +47,13 @@ abstract class Base
     /**
      * Base constructor.
      *
-     * @param $client
+     * @param ShopwareClient $client
+     * @param LoggerInterface $logger
      */
-    public function __construct($client)
+    public function __construct(ShopwareClient $client, LoggerInterface $logger)
     {
         $this->client = $client;
+        $this->logger = $logger;
         $this->queryPath = $this->getQueryPath();
     }
 
@@ -109,8 +117,8 @@ abstract class Base
      */
     protected function createEntityFromResponse(ResponseInterface $response)
     {
-        $content = $response->getBody()->getContents();
-        $content = json_decode($content);
+        $body = $response->getBody()->getContents();
+        $content = json_decode($body);
 
         if (is_null($content)) {
             throw new \RuntimeException('Failed converting response body into json');

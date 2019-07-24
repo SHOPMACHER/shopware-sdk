@@ -24,6 +24,10 @@ class Base
     {
         $array = get_object_vars($this);
 
+        $array = array_filter($array, function ($value) {
+            return (!is_null($value));
+        });
+
         foreach ($array as $key => &$value) {
             if ($value instanceof Base) {
                 $array[$key] = $value->getArrayCopy();
@@ -35,6 +39,7 @@ class Base
                 }
             }
         }
+
         return $array;
     }
 

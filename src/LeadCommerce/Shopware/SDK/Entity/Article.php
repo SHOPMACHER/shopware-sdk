@@ -7,6 +7,7 @@
  * @author Alexander Mahrt <amahrt@leadcommerce.de>
  * @copyright 2016 LeadCommerce <amahrt@leadcommerce.de>
  */
+
 namespace LeadCommerce\Shopware\SDK\Entity;
 
 /**
@@ -628,7 +629,7 @@ class Article extends Base
     }
 
     /**
-     * @return array
+     * @return ArticleAttribute
      */
     public function getAttributes()
     {
@@ -677,10 +678,14 @@ class Article extends Base
 
     /**
      * @param ArticleDetail $mainDetail
+     *
+     * @return Article
      */
     public function setMainDetail(ArticleDetail $mainDetail)
     {
         $this->mainDetail = $mainDetail;
+
+        return $this;
     }
 
 
@@ -696,6 +701,4 @@ class Article extends Base
         }
         return $arrayCopy;
     }
-
-
 }

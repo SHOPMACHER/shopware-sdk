@@ -6,7 +6,6 @@ use LeadCommerce\Shopware\SDK\Exception\MethodNotAllowedException;
 use LeadCommerce\Shopware\SDK\ShopwareClient;
 use LeadCommerce\Shopware\SDK\Util\Constants;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Log\LoggerInterface;
 
 /**
  * Class Base
@@ -20,11 +19,6 @@ abstract class Base
      * @var ShopwareClient
      */
     protected $client;
-
-    /**
-     * @var LoggerInterface
-     */
-    protected $logger;
 
     /**
      * @var string
@@ -48,12 +42,10 @@ abstract class Base
      * Base constructor.
      *
      * @param ShopwareClient $client
-     * @param LoggerInterface $logger
      */
-    public function __construct(ShopwareClient $client, LoggerInterface $logger)
+    public function __construct(ShopwareClient $client)
     {
         $this->client = $client;
-        $this->logger = $logger;
         $this->queryPath = $this->getQueryPath();
     }
 

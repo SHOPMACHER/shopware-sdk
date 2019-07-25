@@ -24,17 +24,22 @@
     "require": {
         "php" : "^7.0",
         "ext-json": "*",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.0"
     },
     "require-dev": {
         "satooshi/php-coveralls": "~1.0.0",
-        "phpunit/phpunit": "~4.8.21"
+        "phpunit/phpunit": "^8.2"
     },
     "autoload": {
         "psr-0": {
             "LeadCommerce\\Shopware\\SDK\\": "src/",
             "LeadCommerce\\Tests\\Unit\\": "tests/",
             "LeadCommerce\\Tests\\Functional\\": "tests/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LeadCommerce\\Tests\\Unit\\": "tests/Unit"
         }
     }
 }

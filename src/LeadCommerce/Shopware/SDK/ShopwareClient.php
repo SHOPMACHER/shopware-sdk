@@ -106,7 +106,7 @@ class ShopwareClient
             'auth' => [
                 $this->getConfig()->getUsername(),
                 $this->getConfig()->getApiKey(),
-                'digest',
+                //'digest',
             ],
         ]);
     }

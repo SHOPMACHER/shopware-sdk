@@ -129,6 +129,11 @@ class Article extends Base
     protected $mainDetail;
 
     /**
+     * @var ArticleDetail[]
+     */
+    protected $details;
+
+    /**
      * @return int
      */
     public function getId()
@@ -688,6 +693,23 @@ class Article extends Base
         return $this;
     }
 
+    /**
+     * @return ArticleDetail[]
+     */
+    public function getDetails(): array
+    {
+        return $this->details;
+    }
+
+    /**
+     * @param ArticleDetail[] $details
+     * @return Article
+     */
+    public function setDetails(array $details): Article
+    {
+        $this->details = $details;
+        return $this;
+    }
 
     /**
      * @return array

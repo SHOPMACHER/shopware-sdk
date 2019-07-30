@@ -14,7 +14,8 @@ class ArticleConverter extends BaseConverter
     public function __construct()
     {
         $this->setSubConverter([
-            'maindetail' => 'LeadCommerce\\Shopware\\SDK\\Converter\\ArticleDetailConverter'
+            'maindetail' => 'LeadCommerce\\Shopware\\SDK\\Converter\\ArticleDetailConverter',
+            'details' => 'LeadCommerce\\Shopware\\SDK\\Converter\\ArticleDetailConverter'
         ]);
     }
 

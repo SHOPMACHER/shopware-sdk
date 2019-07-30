@@ -15,4 +15,20 @@ class ArticleDetailConverter extends BaseConverter
     {
         return '\\LeadCommerce\\Shopware\\SDK\\Entity\\ArticleDetail';
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function convert(array $data)
+    {
+        if (isset($data['id'])) {
+            return parent::convert($data);
+        }
+
+        $result = [];
+        foreach ($data as $single) {
+            array_push($result, parent::convert($single));
+        }
+        return $result;
+    }
 }

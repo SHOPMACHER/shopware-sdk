@@ -35,9 +35,9 @@ class BaseConverter
 
     /**
      * @param array $data
-     * @return Base
+     * @return Base|Base[]
      */
-    public function convert(array $data): Base
+    public function convert(array $data)
     {
         $class = $this->getEntityClass();
         $entity = new $class();
@@ -82,9 +82,9 @@ class BaseConverter
     /**
      * @param string $key
      * @param $value
-     * @return Base
+     * @return Base|Base[]
      */
-    private function runConverterForKey(string $key, $value): Base
+    private function runConverterForKey(string $key, $value)
     {
         if (is_string($this->converter[$key])) {
             $class = $this->converter[$key];

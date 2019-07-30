@@ -105,11 +105,6 @@ class ArticleAttribute extends Base
     protected $articleDetailId;
 
     /**
-     * @var array
-     */
-    private $attributes = [];
-
-    /**
      * @return mixed
      */
     public function getAttr1()
@@ -547,35 +542,5 @@ class ArticleAttribute extends Base
         $this->articleDetailId = $articleDetailId;
 
         return $this;
-    }
-
-    /**
-     * @param string $key
-     * @return mixed
-     */
-    public function get(string $key)
-    {
-        return $this->attributes[$key];
-    }
-
-    /**
-     * @param string $key
-     * @param mixed $value
-     * @return $this
-     */
-    public function set(string $key, $value)
-    {
-        $this->attributes[$key] = $value;
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getArrayCopy()
-    {
-        $result = parent::getArrayCopy();
-
-        return array_merge($result, $this->attributes);
     }
 }

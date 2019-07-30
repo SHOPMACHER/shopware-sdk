@@ -16,21 +16,28 @@ class Base
     protected $id;
 
     /**
+     * @var array
+     */
+    private $__custom = [];
+
+    /**
      * Gets the attributes of this entity.
      *
      * @return array
      */
     public function getArrayCopy()
     {
-        $array = get_object_vars($this);
+        $properties = get_object_vars($this);
+        unset($properties['__custom']);
+        $properties = array_merge($this->__custom, $properties);
 
-        $array = array_filter($array, function ($value) {
+        $properties = array_filter($properties, function ($value) {
             return (!is_null($value));
         });
 
-        foreach ($array as $key => &$value) {
+        foreach ($properties as $key => &$value) {
             if ($value instanceof Base) {
-                $array[$key] = $value->getArrayCopy();
+                $properties[$key] = $value->getArrayCopy();
             } else if (is_array($value)) {
                 foreach ($value as $k => $v) {
                     if ($v instanceof Base) {
@@ -40,7 +47,7 @@ class Base
             }
         }
 
-        return $array;
+        return $properties;
     }
 
     /**
@@ -60,6 +67,35 @@ class Base
     {
         $this->id = $id;
 
+        return $this;
+    }
+
+    /**
+     * @param string $key
+     * @return bool
+     */
+    public function has(string $key): bool
+    {
+        return (isset($this->__custom[$key]));
+    }
+
+    /**
+     * @param string $key
+     * @return mixed
+     */
+    public function get(string $key)
+    {
+        return $this->__custom[$key];
+    }
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return $this
+     */
+    public function set(string $key, $value)
+    {
+        $this->__custom[$key] = $value;
         return $this;
     }
 }

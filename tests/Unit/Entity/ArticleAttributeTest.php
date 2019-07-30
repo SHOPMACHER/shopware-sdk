@@ -52,38 +52,4 @@ class ArticleAttributeTest extends TestCase
             self::assertSame($id, $attribute->$getter());
         }, $attributes);
     }
-
-    /**
-     * @covers \LeadCommerce\Shopware\SDK\Entity\ArticleAttribute
-     */
-    public function testCustomAttributes()
-    {
-        $attribute = new ArticleAttribute();
-
-        $key = uniqid();
-        $value = uniqid();
-        self::assertSame($attribute, $attribute->set($key, $value));
-        self::assertSame($value, $attribute->get($key));
-    }
-
-    /**
-     * @covers \LeadCommerce\Shopware\SDK\Entity\ArticleAttribute
-     */
-    public function testGetArrayCopy()
-    {
-        $attribute = new ArticleAttribute();
-        self::assertEmpty($attribute->getArrayCopy());
-
-        $id = uniqid();
-        $attribute->setAttr4($id);
-        self::assertSame(['attr4' => $id], $attribute->getArrayCopy());
-
-        $key = uniqid();
-        $value = uniqid();
-        $attribute->set($key, $value);
-        self::assertSame([
-            'attr4' => $id,
-            $key => $value
-        ], $attribute->getArrayCopy());
-    }
 }

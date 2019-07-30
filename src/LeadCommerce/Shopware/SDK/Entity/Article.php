@@ -710,17 +710,4 @@ class Article extends Base
         $this->details = $details;
         return $this;
     }
-
-    /**
-     * @return array
-     */
-    public function getArrayCopy()
-    {
-        $arrayCopy = parent::getArrayCopy();
-        if (!empty($arrayCopy['taxId'])) {
-            $arrayCopy['tax'] = $arrayCopy['taxId'];
-            unset($arrayCopy['taxId']);
-        }
-        return $arrayCopy;
-    }
 }

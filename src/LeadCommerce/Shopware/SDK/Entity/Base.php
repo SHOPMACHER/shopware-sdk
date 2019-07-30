@@ -18,7 +18,7 @@ class Base
     /**
      * @var array
      */
-    private $__custom = [];
+    protected $__custom = [];
 
     /**
      * Gets the attributes of this entity.

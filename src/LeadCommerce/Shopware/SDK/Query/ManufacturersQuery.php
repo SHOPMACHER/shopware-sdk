@@ -26,15 +26,12 @@ class ManufacturersQuery extends Base
     /**
      * @return mixed
      */
-    protected function getClass()
+    protected function getConverterClass()
     {
-        return 'LeadCommerce\\Shopware\\SDK\\Entity\\Supplier';
+        return 'LeadCommerce\\Shopware\\SDK\\Converter\\SupplierConverter';
     }
 
     /**
-     * Gets the query path to look for entities.
-     * E.G: 'variants' or 'articles'
-     *
      * @return string
      */
     protected function getQueryPath()

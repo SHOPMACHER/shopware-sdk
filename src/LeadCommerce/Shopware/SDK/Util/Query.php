@@ -14,9 +14,20 @@ class Query
     private $query = [];
 
     /**
+     * @param string $key
+     * @param string $value
+     * @return Query
+     */
+    public function add(string $key, string $value): Query
+    {
+        $this->query[$key] = $value;
+        return $this;
+    }
+
+    /**
      * @param string $property
      * @param string $value
-     * @return $this
+     * @return Query
      */
     public function addFilter(string $property, string $value): Query
     {

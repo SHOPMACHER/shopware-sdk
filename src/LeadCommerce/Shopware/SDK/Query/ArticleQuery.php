@@ -2,7 +2,7 @@
 
 namespace LeadCommerce\Shopware\SDK\Query;
 
-use LeadCommerce\Shopware\SDK\Util\Constants;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Class ArticleQuery
@@ -16,10 +16,11 @@ class ArticleQuery extends Base
      * Find one article based on given article number
      * @param string $number
      * @return \LeadCommerce\Shopware\SDK\Entity\Base
+     * @throws GuzzleException
      */
     public function findOneByNumber(string $number)
     {
-        return $this->fetch($this->queryPath . '/' . $number . '?useNumberAsId=true');
+        return $this->fetch($this->queryPath . '/' . $number, 'GET', null, ['useNumberAsId' => 'true']);
     }
 
     /**

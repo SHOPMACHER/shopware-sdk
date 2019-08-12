@@ -50,8 +50,6 @@ use Psr\Log\LoggerInterface;
  */
 class ShopwareClient
 {
-    const VERSION = '0.0.1';
-
     /**
      * @var Config
      */
@@ -93,22 +91,21 @@ class ShopwareClient
      * @param string $uri
      * @param string $method
      * @param mixed $body
-     * @param array $headers
+     * @param array $options
      *
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function request(string $uri, string $method = 'GET', $body = null, $headers = [])
+    public function request(string $uri, string $method = 'GET', $body = null, array $options = [])
     {
-        return $this->client->request($method, $uri, [
+        return $this->client->request($method, $uri, array_merge([
             'json' => $body,
-            'headers' => $headers,
+            'headers' => [],
             'auth' => [
                 $this->getConfig()->getUsername(),
                 $this->getConfig()->getApiKey(),
-                //'digest',
             ],
-        ]);
+        ], $options));
     }
 
     /**
@@ -140,18 +137,6 @@ class ShopwareClient
     public function getClient()
     {
         return $this->client;
-    }
-
-    /**
-     * @param Client $client
-     *
-     * @return ShopwareClient
-     */
-    public function setClient($client)
-    {
-        $this->client = $client;
-
-        return $this;
     }
 
     /**

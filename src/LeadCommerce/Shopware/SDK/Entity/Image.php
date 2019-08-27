@@ -66,6 +66,10 @@ class Image extends Base
      * @var int
      */
     protected $mediaId;
+    /**
+     * @var string
+     */
+    protected $link;
 
     /**
      * @return int
@@ -324,6 +328,26 @@ class Image extends Base
     {
         $this->mediaId = $mediaId;
 
+        return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+    
+    /**
+     * @param string $link
+     *
+     * @return Image
+     */
+    public function setLink(string $link)
+    {
+        $this->link = $link;
+        
         return $this;
     }
 }

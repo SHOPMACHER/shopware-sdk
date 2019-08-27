@@ -62,7 +62,7 @@ class BaseConverter
     private function convertValueForKey(string $key, $value)
     {
         $key = strtolower($key);
-
+        
         if ($this->hasConverterForKey($key)) {
             return $this->runConverterForKey($key, $value);
         }

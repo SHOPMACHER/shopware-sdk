@@ -9,6 +9,16 @@ namespace LeadCommerce\Shopware\SDK\Converter;
 class ArticleDetailConverter extends BaseConverter
 {
     /**
+     * @inheritDoc
+     */
+    public function __construct()
+    {
+        $this->setSubConverter([
+          'attribute' => ArticleAttributeConverter::class,
+        ]);
+    }
+    
+    /**
      * @return string
      */
     public function getEntityClass(): string
@@ -24,7 +34,6 @@ class ArticleDetailConverter extends BaseConverter
         if (isset($data['id'])) {
             return parent::convert($data);
         }
-
         $result = [];
         foreach ($data as $single) {
             array_push($result, parent::convert($single));

@@ -126,6 +126,10 @@ class ArticleDetail extends Base
      * @var bool
      */
     protected $shippingFree;
+    /**
+     * @var Image[]
+     */
+    protected $images;
 
     /**
      * @return int
@@ -450,7 +454,7 @@ class ArticleDetail extends Base
     /**
      * @return ArticleAttribute
      */
-    public function getAttributes()
+    public function getAttribute()
     {
         return $this->attribute;
     }
@@ -460,7 +464,7 @@ class ArticleDetail extends Base
      *
      * @return ArticleDetail
      */
-    public function setAttributes($attribute)
+    public function setAttribute($attribute)
     {
         $this->attribute = $attribute;
 
@@ -684,6 +688,26 @@ class ArticleDetail extends Base
     {
         $this->shippingFree = $shippingFree;
 
+        return $this;
+    }
+    
+    /**
+     * @return Image[]
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+    
+    /**
+     * @param Image[] $images
+     *
+     * @return ArticleDetail
+     */
+    public function setImages(array $images)
+    {
+        $this->images = $images;
+        
         return $this;
     }
 }

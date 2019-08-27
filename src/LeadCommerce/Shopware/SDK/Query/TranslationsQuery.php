@@ -2,6 +2,7 @@
 
 namespace LeadCommerce\Shopware\SDK\Query;
 
+use LeadCommerce\Shopware\SDK\Converter\TranslationConverter;
 use LeadCommerce\Shopware\SDK\Util\Constants;
 
 /**
@@ -23,13 +24,13 @@ class TranslationsQuery extends Base
         Constants::METHOD_DELETE,
         Constants::METHOD_DELETE_BATCH,
     ];
-
+    
     /**
      * @return mixed
      */
-    protected function getClass()
+    protected function getConverterClass()
     {
-        return 'LeadCommerce\\Shopware\\SDK\\Entity\\Translation';
+        return TranslationConverter::class;
     }
 
     /**

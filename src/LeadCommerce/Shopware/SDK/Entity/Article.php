@@ -132,6 +132,14 @@ class Article extends Base
      * @var ArticleDetail[]
      */
     protected $details;
+    /**
+     * @var PropertyValue[]
+     */
+    protected $propertyValues;
+    /**
+     * @var Image[]
+     */
+    protected $images;
 
     /**
      * @return int
@@ -636,7 +644,7 @@ class Article extends Base
     /**
      * @return ArticleAttribute
      */
-    public function getAttributes()
+    public function getAttribute()
     {
         return $this->attribute;
     }
@@ -646,7 +654,7 @@ class Article extends Base
      *
      * @return Article
      */
-    public function setAttributes($attributes)
+    public function setAttribute($attributes)
     {
         $this->attribute = $attributes;
 
@@ -708,6 +716,46 @@ class Article extends Base
     public function setDetails(array $details): Article
     {
         $this->details = $details;
+        return $this;
+    }
+    
+    /**
+     * @return PropertyValue[]
+     */
+    public function getPropertyValues()
+    {
+        return $this->propertyValues;
+    }
+    
+    /**
+     * @param PropertyValue[] $propertyValues
+     *
+     * @return Article
+     */
+    public function setPropertyValues(array $propertyValues)
+    {
+        $this->propertyValues = $propertyValues;
+        
+        return $this;
+    }
+    
+    /**
+     * @return Image[]
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+    
+    /**
+     * @param Image[] $images
+     *
+     * @return Article
+     */
+    public function setImages(array $images)
+    {
+        $this->images = $images;
+        
         return $this;
     }
 }

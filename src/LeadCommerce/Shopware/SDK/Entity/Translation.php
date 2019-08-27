@@ -122,7 +122,99 @@ class Translation extends Base
      * @var int
      */
     protected $shopId;
-
+    /**
+     * @var string
+     */
+    protected $key;
+    /**
+     * @var string
+     */
+    protected $type;
+    /**
+     * @var array
+     */
+    protected $data;
+    
+    /**
+     * @return int
+     */
+    public function getShopId(): int
+    {
+        return $this->shopId;
+    }
+    
+    /**
+     * @param int $shopId
+     *
+     * @return Translation
+     */
+    public function setShopId(int $shopId)
+    {
+        $this->shopId = $shopId;
+        
+        return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
+    
+    /**
+     * @param string $key
+     *
+     * @return Translation
+     */
+    public function setKey(string $key)
+    {
+        $this->key = $key;
+        
+        return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+    
+    /**
+     * @param string $type
+     *
+     * @return Translation
+     */
+    public function setType(string $type)
+    {
+        $this->type = $type;
+        
+        return $this;
+    }
+    
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+    
+    /**
+     * @param array $data
+     *
+     * @return Translation
+     */
+    public function setData(array $data)
+    {
+        $this->data = $data;
+        
+        return $this;
+    }
+    
     /**
      * @return string
      */

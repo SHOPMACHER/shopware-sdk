@@ -103,6 +103,26 @@ class ArticleAttribute extends Base
      * @var int
      */
     protected $articleDetailId;
+    /**
+     * @var int
+     */
+    protected $tonurArticleGiftOption;
+    /**
+     * @var int
+     */
+    protected $tonurDenyGreetingCard;
+    /**
+     * @var string
+     */
+    protected $ingredients;
+    /**
+     * @var string
+     */
+    protected $howToApply;
+    /**
+     * @var string
+     */
+    protected $pimJson;
 
     /**
      * @return mixed
@@ -541,6 +561,106 @@ class ArticleAttribute extends Base
     {
         $this->articleDetailId = $articleDetailId;
 
+        return $this;
+    }
+    
+    /**
+     * @return int
+     */
+    public function getTonurArticleGiftOption()
+    {
+        return $this->tonurArticleGiftOption;
+    }
+    
+    /**
+     * @param int $tonurArticleGiftOption
+     *
+     * @return ArticleAttribute
+     */
+    public function setTonurArticleGiftOption($tonurArticleGiftOption)
+    {
+        $this->tonurArticleGiftOption = $tonurArticleGiftOption;
+        
+        return $this;
+    }
+    
+    /**
+     * @return int
+     */
+    public function getTonurDenyGreetingCard()
+    {
+        return $this->tonurDenyGreetingCard;
+    }
+    
+    /**
+     * @param int $tonurDenyGreetingCard
+     *
+     * @return ArticleAttribute
+     */
+    public function setTonurDenyGreetingCard($tonurDenyGreetingCard)
+    {
+        $this->tonurDenyGreetingCard = $tonurDenyGreetingCard;
+        
+        return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getIngredients()
+    {
+        return $this->ingredients;
+    }
+    
+    /**
+     * @param string $ingredients
+     *
+     * @return ArticleAttribute
+     */
+    public function setIngredients($ingredients)
+    {
+        $this->ingredients = $ingredients;
+        
+        return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getHowToApply()
+    {
+        return $this->howToApply;
+    }
+    
+    /**
+     * @param string $howToApply
+     *
+     * @return ArticleAttribute
+     */
+    public function setHowToApply($howToApply)
+    {
+        $this->howToApply = $howToApply;
+        
+        return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getPimJson()
+    {
+        return $this->pimJson;
+    }
+    
+    /**
+     * @param string $pimJson
+     *
+     * @return ArticleAttribute
+     */
+    public function setPimJson($pimJson)
+    {
+        $this->pimJson = $pimJson;
+        
         return $this;
     }
 }

@@ -34,6 +34,10 @@ class PropertyValue extends Base
      * @var string
      */
     protected $value;
+    /**
+     * @var PropertyGroupOption
+     */
+    protected $option;
 
     /**
      * @return int
@@ -132,6 +136,26 @@ class PropertyValue extends Base
     {
         $this->value = $value;
 
+        return $this;
+    }
+    
+    /**
+     * @return PropertyGroupOption
+     */
+    public function getOption()
+    {
+        return $this->option;
+    }
+    
+    /**
+     * @param PropertyGroupOption $option
+     *
+     * @return PropertyValue
+     */
+    public function setOption(PropertyGroupOption $option)
+    {
+        $this->option = $option;
+        
         return $this;
     }
 }

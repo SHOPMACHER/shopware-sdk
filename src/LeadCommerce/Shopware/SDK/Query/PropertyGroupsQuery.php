@@ -2,6 +2,7 @@
 
 namespace LeadCommerce\Shopware\SDK\Query;
 
+use LeadCommerce\Shopware\SDK\Converter\PropertyGroupConverter;
 use LeadCommerce\Shopware\SDK\Util\Constants;
 
 /**
@@ -26,9 +27,9 @@ class PropertyGroupsQuery extends Base
     /**
      * @return mixed
      */
-    protected function getClass()
+    protected function getConverterClass()
     {
-        return 'LeadCommerce\\Shopware\\SDK\\Entity\\PropertyGroup';
+        return PropertyGroupConverter::class;
     }
 
     /**

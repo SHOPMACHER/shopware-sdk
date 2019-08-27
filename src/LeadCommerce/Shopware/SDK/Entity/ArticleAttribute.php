@@ -661,7 +661,7 @@ class ArticleAttribute extends Base
      *
      * @return ArticleAttribute
      */
-    public function setFeatures(string $features)
+    public function setFeatures($features)
     {
         $this->features = $features;
         

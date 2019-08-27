@@ -122,6 +122,10 @@ class ArticleAttribute extends Base
     /**
      * @var string
      */
+    protected $features;
+    /**
+     * @var string
+     */
     protected $pimJson;
 
     /**
@@ -640,6 +644,26 @@ class ArticleAttribute extends Base
     public function setHowToApply($howToApply)
     {
         $this->howToApply = $howToApply;
+        
+        return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getFeatures()
+    {
+        return $this->features;
+    }
+    
+    /**
+     * @param string $features
+     *
+     * @return ArticleAttribute
+     */
+    public function setFeatures(string $features)
+    {
+        $this->features = $features;
         
         return $this;
     }

@@ -11,6 +11,16 @@ use LeadCommerce\Shopware\SDK\Entity\PropertyGroup;
 class PropertyGroupConverter extends BaseConverter
 {
     /**
+     * @inheritDoc
+     */
+    public function __construct()
+    {
+        $this->setSubConverter([
+          'options' => PropertyGroupOptionConverter::class,
+        ]);
+    }
+    
+    /**
      * @return string
      */
     public function getEntityClass(): string

@@ -34,6 +34,10 @@ class PropertyGroup extends Base
      * @var int
      */
     protected $sortMode;
+    /**
+     * @var PropertyGroupOption[]
+     */
+    protected $options;
 
     /**
      * @return int
@@ -132,6 +136,26 @@ class PropertyGroup extends Base
     {
         $this->sortMode = $sortMode;
 
+        return $this;
+    }
+    
+    /**
+     * @return PropertyGroupOption[]
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+    
+    /**
+     * @param PropertyGroupOption[] $options
+     *
+     * @return PropertyGroup
+     */
+    public function setOptions(array $options)
+    {
+        $this->options = $options;
+        
         return $this;
     }
 }

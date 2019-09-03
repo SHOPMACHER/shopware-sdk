@@ -38,6 +38,10 @@ class PropertyValue extends Base
      * @var PropertyGroupOption
      */
     protected $option;
+    /**
+     * @var bool
+     */
+    protected $filterable;
 
     /**
      * @return int
@@ -155,6 +159,26 @@ class PropertyValue extends Base
     public function setOption(PropertyGroupOption $option)
     {
         $this->option = $option;
+        
+        return $this;
+    }
+    
+    /**
+     * @return bool
+     */
+    public function isFilterable()
+    {
+        return $this->filterable;
+    }
+    
+    /**
+     * @param bool $filterable
+     *
+     * @return PropertyValue
+     */
+    public function setFilterable(bool $filterable)
+    {
+        $this->filterable = $filterable;
         
         return $this;
     }

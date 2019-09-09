@@ -2,6 +2,8 @@
 
 namespace LeadCommerce\Shopware\SDK\Query;
 
+use GuzzleHttp\Exception\GuzzleException;
+use LeadCommerce\Shopware\SDK\Converter\OrderConverter;
 use LeadCommerce\Shopware\SDK\Util\Constants;
 
 /**
@@ -20,13 +22,13 @@ class OrdersQuery extends Base
         Constants::METHOD_GET_BATCH,
         Constants::METHOD_UPDATE,
     ];
-
+    
     /**
      * @return mixed
      */
-    protected function getClass()
+    protected function getConverterClass()
     {
-        return 'LeadCommerce\\Shopware\\SDK\\Entity\\Order';
+        return OrderConverter::class;
     }
 
     /**
@@ -38,5 +40,16 @@ class OrdersQuery extends Base
     protected function getQueryPath()
     {
         return 'orders';
+    }
+    
+    /**
+     * Find one article based on given article number
+     * @param string $number
+     * @return \LeadCommerce\Shopware\SDK\Entity\Base
+     * @throws GuzzleException
+     */
+    public function findOneByNumber(string $number)
+    {
+        return $this->fetch($this->queryPath . '/' . $number, 'GET', null, ['useNumberAsId' => 'true']);
     }
 }

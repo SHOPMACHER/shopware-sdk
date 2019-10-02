@@ -2,6 +2,7 @@
 
 namespace LeadCommerce\Shopware\SDK\Query;
 
+use LeadCommerce\Shopware\SDK\Converter\CategoryConverter;
 use LeadCommerce\Shopware\SDK\Util\Constants;
 
 /**
@@ -26,9 +27,9 @@ class CategoriesQuery extends Base
     /**
      * @return mixed
      */
-    protected function getClass()
+    protected function getConverterClass()
     {
-        return 'LeadCommerce\\Shopware\\SDK\\Entity\\Category';
+        return CategoryConverter::class;
     }
 
     /**

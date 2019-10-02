@@ -91,6 +91,6 @@ class BaseConverter
             $this->converter[$key] = new $class();
         }
 
-        return $this->converter[$key]->convert($value);
+        return $this->converter[$key]->convert($value ?? []);
     }
 }

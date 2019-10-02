@@ -22,6 +22,14 @@ class Category extends Base
      * @var string
      */
     protected $name;
+    /**
+     * @var int
+     */
+    protected $parentId;
+    /**
+     * @var CategoryAttribute
+     */
+    protected $attribute;
 
     /**
      * @return int
@@ -60,6 +68,46 @@ class Category extends Base
     {
         $this->name = $name;
 
+        return $this;
+    }
+    
+    /**
+     * @return int
+     */
+    public function getParentId()
+    {
+        return $this->parentId;
+    }
+    
+    /**
+     * @param int $parentId
+     *
+     * @return Category
+     */
+    public function setParentId(int $parentId)
+    {
+        $this->parentId = $parentId;
+        
+        return $this;
+    }
+    
+    /**
+     * @return CategoryAttribute
+     */
+    public function getAttribute()
+    {
+        return $this->attribute;
+    }
+    
+    /**
+     * @param CategoryAttribute $attribute
+     *
+     * @return Category
+     */
+    public function setAttribute(CategoryAttribute $attribute)
+    {
+        $this->attribute = $attribute;
+        
         return $this;
     }
 }

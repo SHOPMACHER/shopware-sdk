@@ -140,6 +140,10 @@ class Article extends Base
      * @var Image[]
      */
     protected $images;
+    /**
+     * @var CustomerGroup[]
+     */
+    protected $customerGroups;
 
     /**
      * @return int
@@ -755,6 +759,26 @@ class Article extends Base
     public function setImages(array $images)
     {
         $this->images = $images;
+        
+        return $this;
+    }
+    
+    /**
+     * @return CustomerGroup[]
+     */
+    public function getCustomerGroups()
+    {
+        return $this->customerGroups;
+    }
+    
+    /**
+     * @param CustomerGroup[] $customerGroups
+     *
+     * @return Article
+     */
+    public function setCustomerGroups(array $customerGroups)
+    {
+        $this->customerGroups = $customerGroups;
         
         return $this;
     }

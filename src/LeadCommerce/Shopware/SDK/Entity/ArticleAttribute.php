@@ -126,6 +126,10 @@ class ArticleAttribute extends Base
     /**
      * @var string
      */
+    protected $swatchColorCode;
+    /**
+     * @var string
+     */
     protected $pimJson;
 
     /**
@@ -666,6 +670,16 @@ class ArticleAttribute extends Base
         $this->features = $features;
         
         return $this;
+    }
+    
+    /**
+     * @param $color
+     *
+     * @return ArticleAttribute
+     */
+    public function setSwatchColorCode($color)
+    {
+        return $this->swatchColorCode;
     }
     
     /**

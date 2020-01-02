@@ -685,7 +685,7 @@ class ArticleAttribute extends Base
      *
      * @return ArticleAttribute
      */
-    public function setSwatchColorCode(string $swatchColorCode)
+    public function setSwatchColorCode($swatchColorCode)
     {
         $this->swatchColorCode = $swatchColorCode;
         

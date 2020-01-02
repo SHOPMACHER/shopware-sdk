@@ -673,13 +673,23 @@ class ArticleAttribute extends Base
     }
     
     /**
-     * @param $color
+     * @return string
+     */
+    public function getSwatchColorCode()
+    {
+        return $this->swatchColorCode;
+    }
+    
+    /**
+     * @param string $swatchColorCode
      *
      * @return ArticleAttribute
      */
-    public function setSwatchColorCode($color)
+    public function setSwatchColorCode(string $swatchColorCode)
     {
-        return $this->swatchColorCode;
+        $this->swatchColorCode = $swatchColorCode;
+        
+        return $this;
     }
     
     /**

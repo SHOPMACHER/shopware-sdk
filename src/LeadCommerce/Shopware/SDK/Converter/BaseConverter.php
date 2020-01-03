@@ -47,6 +47,8 @@ class BaseConverter
                 $setter = 'set' . ucfirst($key);
                 if (method_exists($entity, $setter)) {
                     $entity->$setter($this->convertValueForKey($key, $value));
+                } elseif (method_exists($entity, 'set')) {
+                    $entity->set($key, $value);
                 }
             }
         }

@@ -710,7 +710,7 @@ class Article extends Base
      */
     public function getDetails(): array
     {
-        return $this->details;
+        return $this->details ?? [];
     }
 
     /**

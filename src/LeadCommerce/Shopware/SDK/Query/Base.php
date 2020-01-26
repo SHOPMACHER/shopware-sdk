@@ -228,7 +228,7 @@ abstract class Base
     {
         $body = $response->getBody()->getContents();
         $content = json_decode($body);
-
+        
         if (is_null($content)) {
             $this->client->getLogger()->debug($body);
             throw new RuntimeException('Failed converting response body into json');

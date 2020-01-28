@@ -144,11 +144,7 @@ class Article extends Base
      * @var CustomerGroup[]
      */
     protected $customerGroups;
-    /**
-     * @var ConfiguratorSet
-     */
-    protected $configuratorSet;
-
+   
     /**
      * @return int
      */
@@ -783,30 +779,6 @@ class Article extends Base
     public function setCustomerGroups(array $customerGroups)
     {
         $this->customerGroups = $customerGroups;
-        
-        return $this;
-    }
-    
-    /**
-     * @return ConfiguratorSet
-     */
-    public function getConfiguratorSet()
-    {
-        return $this->configuratorSet;
-    }
-    
-    /**
-     * @param ConfiguratorSet|array $configuratorSet
-     *
-     * @return Article
-     */
-    public function setConfiguratorSet($configuratorSet)
-    {
-        if (is_array($configuratorSet)) {
-            return $this;
-        }
-        
-        $this->configuratorSet = $configuratorSet;
         
         return $this;
     }

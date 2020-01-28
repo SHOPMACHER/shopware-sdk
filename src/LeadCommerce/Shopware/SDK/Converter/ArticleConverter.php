@@ -16,8 +16,7 @@ class ArticleConverter extends BaseConverter
         $this->setSubConverter([
             'maindetail' => ArticleDetailConverter::class,
             'details' => ArticleDetailConverter::class,
-            'customergroups' => CustomerGroupConverter::class,
-            'configuratorset' => ConfiguratorSetConverter::class
+            'customergroups' => CustomerGroupConverter::class
         ]);
     }
 

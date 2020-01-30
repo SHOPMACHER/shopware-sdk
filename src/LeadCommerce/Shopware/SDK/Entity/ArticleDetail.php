@@ -7,6 +7,7 @@
  * @author Alexander Mahrt <amahrt@leadcommerce.de>
  * @copyright 2016 LeadCommerce <amahrt@leadcommerce.de>
  */
+
 namespace LeadCommerce\Shopware\SDK\Entity;
 
 /**
@@ -122,6 +123,10 @@ class ArticleDetail extends Base
      * @var bool
      */
     protected $active;
+    /**
+     * @var bool
+     */
+    protected $lastStock;
     /**
      * @var bool
      */
@@ -674,6 +679,25 @@ class ArticleDetail extends Base
     /**
      * @return bool
      */
+    public function isLastStock(): bool
+    {
+        return $this->lastStock;
+    }
+
+    /**
+     * @param bool $lastStock
+     * @return $this
+     */
+    public function setLastStock(bool $lastStock)
+    {
+        $this->lastStock = $lastStock;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
     public function isShippingFree()
     {
         return $this->shippingFree;
@@ -690,7 +714,7 @@ class ArticleDetail extends Base
 
         return $this;
     }
-    
+
     /**
      * @return Image[]
      */
@@ -698,7 +722,7 @@ class ArticleDetail extends Base
     {
         return $this->images;
     }
-    
+
     /**
      * @param Image[] $images
      *
@@ -707,7 +731,7 @@ class ArticleDetail extends Base
     public function setImages(array $images)
     {
         $this->images = $images;
-        
+
         return $this;
     }
 }

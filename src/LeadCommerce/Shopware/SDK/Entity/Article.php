@@ -144,7 +144,7 @@ class Article extends Base
      * @var CustomerGroup[]
      */
     protected $customerGroups;
-   
+
     /**
      * @return int
      */
@@ -722,7 +722,16 @@ class Article extends Base
         $this->details = $details;
         return $this;
     }
-    
+
+    /**
+     * Return merged array with all details.
+     * @return ArticleDetail[]
+     */
+    public function getAllDetails(): array
+    {
+        return array_merge([$this->getMainDetail()], $this->getDetails());
+    }
+
     /**
      * @return PropertyValue[]
      */
@@ -730,7 +739,7 @@ class Article extends Base
     {
         return $this->propertyValues;
     }
-    
+
     /**
      * @param PropertyValue[] $propertyValues
      *
@@ -739,10 +748,10 @@ class Article extends Base
     public function setPropertyValues(array $propertyValues)
     {
         $this->propertyValues = $propertyValues;
-        
+
         return $this;
     }
-    
+
     /**
      * @return Image[]
      */
@@ -750,7 +759,7 @@ class Article extends Base
     {
         return $this->images;
     }
-    
+
     /**
      * @param Image[] $images
      *
@@ -759,10 +768,10 @@ class Article extends Base
     public function setImages(array $images)
     {
         $this->images = $images;
-        
+
         return $this;
     }
-    
+
     /**
      * @return CustomerGroup[]
      */
@@ -770,7 +779,7 @@ class Article extends Base
     {
         return $this->customerGroups;
     }
-    
+
     /**
      * @param CustomerGroup[] $customerGroups
      *
@@ -779,7 +788,7 @@ class Article extends Base
     public function setCustomerGroups(array $customerGroups)
     {
         $this->customerGroups = $customerGroups;
-        
+
         return $this;
     }
 }
